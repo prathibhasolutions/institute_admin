@@ -1,22 +1,12 @@
-.login-logo {
-    height: 40px !important;
-    width: auto !important;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1rem;
-}
 
 body.jazzmin-login-page, body.jazzmin-logout-page {
     background-image: none !important;
 }
-.jazzmin-login-page .login-logo {
-    display: block !important;
-    margin: 2rem auto 1rem auto !important;
-    height: 40px !important;
-    width: auto !important;
+.jazzmin-login-page .login-logo,
+.jazzmin-logout-page .login-logo,
+.jazzmin-login-page .brand-image,
+.jazzmin-logout-page .brand-image {
+    display: none !important;
 }
 
-body.jazzmin-login-page {
-    background-image: none !important;
-}
+

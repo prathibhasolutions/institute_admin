@@ -8,6 +8,7 @@ class Course(models.Model):
 		return self.name or "(No Name)"
 
 
+
 class Student(models.Model):
 	name = models.CharField(max_length=255)
 	mobile_no = models.CharField(max_length=20)
@@ -17,9 +18,11 @@ class Student(models.Model):
 	joining_date = models.DateField(null=True, blank=True)
 	course_completion_date = models.DateField(null=True, blank=True)
 	fees = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+	paid_fees = models.DecimalField(max_digits=10, decimal_places=2, default=0)  # New field, cannot be null
 	student_photo = models.FileField(upload_to='student_photos/', null=True, blank=True)
 	address = models.TextField(null=True, blank=True)
 	admission_form = models.FileField(upload_to='admission_forms/', null=True, blank=True)
+	note = models.TextField(null=True, blank=True)  # New field, can be null
 
 	def __str__(self):
 		return self.name
