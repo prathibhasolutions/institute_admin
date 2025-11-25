@@ -1,0 +1,17 @@
+{% extends "jazzmin/pages/login.html" %}
+{% block login_welcome %}
+    <h2 style="text-align:center; margin-bottom: 1.5rem; font-size:1.3rem; font-weight:600; color:#1a237e;">Prathibha Institute Admin Login</h2>
+{% endblock %}
+{% block extra_css %}
+    <style>
+        body.jazzmin-login-page {
+            background-image: none !important;
+        }
+        .jazzmin-login-page .login-logo,
+        .jazzmin-logout-page .login-logo,
+        .jazzmin-login-page .brand-image,
+        .jazzmin-logout-page .brand-image {
+            display: none !important;
+        }
+    </style>
+{% endblock %}

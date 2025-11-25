@@ -1,3 +1,9 @@
+# Jazzmin custom logo and favicon settings
+JAZZMIN_SETTINGS = {
+    "site_logo": "management/prathibha_logo.png",
+    "site_icon": "management/prathibha_logo.png",
+    "custom_css": "management/custom_admin.css",
+}
 """
 Django settings for project project.
 
@@ -39,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'management',
+    'auditlog',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +54,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'auditlog.middleware.AuditlogMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
