@@ -10,7 +10,7 @@
             <div class="card-body p-3" style="background: #e8f5e9; border-left: 5px solid #388e3c; min-height: 110px; display: flex; flex-direction: column; justify-content: center;">
                 <h5 class="card-title" style="margin-bottom: 0.5rem; color: #388e3c; font-weight: bold;">Current Balance</h5>
                 <div class="card-text" style="font-size: 1.5rem; color: #222; font-weight: bold;">
-                    ₹ {{ current_balance }}
+                    ₹ {{ current_balance|floatformat:0 }}
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
             <div class="card-body p-3" style="background: #e3f2fd; border-left: 5px solid #1976d2; min-height: 110px; display: flex; flex-direction: column; justify-content: center;">
                 <h5 class="card-title" style="margin-bottom: 0.5rem; color: #1976d2; font-weight: bold;">This Month's Credits</h5>
                 <div class="card-text" style="font-size: 1.5rem; color: #222; font-weight: bold;">
-                    ₹ {{ month_credits }}
+                    ₹ {{ month_credits|floatformat:0 }}
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <div class="card-body p-3" style="background: #ffebee; border-left: 5px solid #d32f2f; min-height: 110px; display: flex; flex-direction: column; justify-content: center;">
                 <h5 class="card-title" style="margin-bottom: 0.5rem; color: #d32f2f; font-weight: bold;">This Month's Expenditure</h5>
                 <div class="card-text" style="font-size: 1.5rem; color: #222; font-weight: bold;">
-                    ₹ {{ month_debits }}
+                    ₹ {{ month_debits|floatformat:0 }}
                 </div>
             </div>
         </div>

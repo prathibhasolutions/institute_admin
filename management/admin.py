@@ -27,11 +27,15 @@ from django.db.models import Sum
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
-	list_display = ("id", "date", "transaction_type", "amount", "description")
+	list_display = ("id", "date", "transaction_type", "formatted_amount", "description")
 	list_filter = ("transaction_type", "date")
 	search_fields = ("description",)
 	date_hierarchy = "date"
 	ordering = ("-date",)
+	
+	def formatted_amount(self, obj):
+		return f"{obj.amount:.0f}"
+	formatted_amount.short_description = "Amount"
 
 	def changelist_view(self, request, extra_context=None):
 		from django.utils.timezone import now
