@@ -1,17 +1,22 @@
+from auditlog.registry import auditlog
 
 from django.contrib import admin
 
 from .models import Course, Student, Transaction
 
 
+
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
 	list_display = ("id", "name")
+auditlog.register(Course)
+
 
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-	list_display = ("id", "name", "mobile_no", "guardian_name", "guardian_mobile_no", "course", "joining_date", "course_completion_date", "fees", "student_photo")
+	list_display = ("id", "name", "course")
+auditlog.register(Student)
 
 
 
@@ -19,13 +24,18 @@ class StudentAdmin(admin.ModelAdmin):
 
 from django.db.models import Sum
 
+
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
-	list_display = ("id", "date", "transaction_type", "amount", "description")
+	list_display = ("id", "date", "transaction_type", "formatted_amount", "description")
 	list_filter = ("transaction_type", "date")
 	search_fields = ("description",)
 	date_hierarchy = "date"
 	ordering = ("-date",)
+	
+	def formatted_amount(self, obj):
+		return f"{obj.amount:.0f}"
+	formatted_amount.short_description = "Amount"
 
 	def changelist_view(self, request, extra_context=None):
 		from django.utils.timezone import now
@@ -52,6 +62,7 @@ class TransactionAdmin(admin.ModelAdmin):
 		extra_context['month_credits'] = month_credits
 		extra_context['month_debits'] = month_debits
 		return super().changelist_view(request, extra_context=extra_context)
+auditlog.register(Transaction)
 
 
 

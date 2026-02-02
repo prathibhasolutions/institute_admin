@@ -1,0 +1,12 @@
+
+body.jazzmin-login-page, body.jazzmin-logout-page {
+    background-image: none !important;
+}
+.jazzmin-login-page .login-logo,
+.jazzmin-logout-page .login-logo,
+.jazzmin-login-page .brand-image,
+.jazzmin-logout-page .brand-image {
+    display: none !important;
+}
+
+
