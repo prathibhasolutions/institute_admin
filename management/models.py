@@ -32,7 +32,7 @@ class Transaction(models.Model):
 		("CREDIT", "Credit"),
 		("DEBIT", "Debit"),
 	]
-	date = models.DateTimeField(auto_now_add=True)
+	date = models.DateTimeField(null=True, blank=True)
 	amount = models.DecimalField(max_digits=12, decimal_places=2)
 	transaction_type = models.CharField(max_length=6, choices=TRANSACTION_TYPES)
 	description = models.CharField(max_length=255, null=True, blank=True)
