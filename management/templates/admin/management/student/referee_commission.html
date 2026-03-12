@@ -1,0 +1,408 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ doc_number }}</title>
+    <style>
+        :root {
+            --primary: #0f2f52;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --line: #d1d5db;
+            --soft: #f9fafb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: #f3f4f6;
+            padding: 20px;
+        }
+
+        .sheet {
+            max-width: 980px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(15, 47, 82, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(130deg, var(--primary), #1e4f86);
+            color: #ffffff;
+            padding: 20px 26px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        .brand h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .meta {
+            margin: 4px 0 0;
+            font-size: 13px;
+        }
+
+        .doc-title h2 {
+            margin: 0;
+            font-size: 24px;
+            text-align: right;
+        }
+
+        .doc-title p {
+            margin: 4px 0 0;
+            font-size: 13px;
+            text-align: right;
+        }
+
+        .content {
+            padding: 20px 24px;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 14px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .card-head {
+            background: var(--soft);
+            border-bottom: 1px solid var(--line);
+            padding: 9px 12px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .card-body {
+            padding: 12px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 14px;
+        }
+
+        .label {
+            font-size: 11px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #111827;
+            word-break: break-word;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .table th,
+        .table td {
+            border: 1px solid var(--line);
+            padding: 9px 10px;
+            text-align: left;
+        }
+
+        .table th {
+            background: var(--soft);
+            width: 58%;
+        }
+
+        .table .highlight td,
+        .table .highlight th {
+            background: #edf4ff;
+            font-weight: 700;
+        }
+
+        .policy {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #374151;
+            line-height: 1.5;
+        }
+
+        .sign {
+            margin-top: 22px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .sign-line {
+            border-top: 1px solid #9ca3af;
+            padding-top: 6px;
+            font-size: 12px;
+            color: #4b5563;
+            text-align: center;
+        }
+
+        .actions {
+            max-width: 980px;
+            margin: 12px auto 0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .btn {
+            border: 0;
+            background: var(--primary);
+            color: #fff;
+            padding: 9px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn.secondary {
+            background: #4b5563;
+        }
+
+        @media (max-width: 700px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .doc-title h2,
+            .doc-title p {
+                text-align: left;
+            }
+
+            .grid,
+            .sign {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 8mm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            body {
+                background: #fff;
+                padding: 0;
+            }
+
+            .sheet {
+                border: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .header {
+                padding: 12px 14px;
+            }
+
+            .logo {
+                width: 46px;
+                height: 46px;
+            }
+
+            .brand h1 {
+                font-size: 16px;
+            }
+
+            .meta,
+            .doc-title p {
+                font-size: 10px;
+            }
+
+            .doc-title h2 {
+                font-size: 19px;
+            }
+
+            .content {
+                padding: 10px 14px;
+            }
+
+            .card {
+                margin-bottom: 8px;
+            }
+
+            .card-head {
+                padding: 7px 10px;
+                font-size: 11px;
+            }
+
+            .card-body {
+                padding: 8px 10px;
+            }
+
+            .label {
+                font-size: 9px;
+            }
+
+            .value {
+                font-size: 11px;
+            }
+
+            .table {
+                font-size: 11px;
+            }
+
+            .table th,
+            .table td {
+                padding: 6px 8px;
+            }
+
+            .policy {
+                font-size: 10px;
+                margin-top: 6px;
+            }
+
+            .sign {
+                margin-top: 14px;
+                gap: 14px;
+            }
+
+            .sign-line {
+                font-size: 10px;
+                padding-top: 4px;
+            }
+
+            .actions {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sheet">
+        <header class="header">
+            <div class="brand">
+                <img class="logo" src="{% static 'management/prathibha_logo.png' %}" alt="Institute Logo">
+                <div>
+                    <h1>{{ institute_name }}</h1>
+                    <p class="meta">Mobile: {{ institute_mobile }}</p>
+                    <p class="meta">{{ institute_address }}</p>
+                </div>
+            </div>
+            <div class="doc-title">
+                <h2>REFEREE COMMISSION</h2>
+                <p><strong>No:</strong> {{ doc_number }}</p>
+                <p><strong>Date:</strong> {{ doc_date|date:"d M Y" }}</p>
+            </div>
+        </header>
+
+        <main class="content">
+            <section class="card">
+                <div class="card-head">Referee Details</div>
+                <div class="card-body grid">
+                    <div>
+                        <div class="label">Referee Name</div>
+                        <div class="value">{{ student.referee_name|default:"-" }}</div>
+                    </div>
+                    <div>
+                        <div class="label">Referee Details</div>
+                        <div class="value">{{ student.referee_details|default:"-" }}</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-head">Student Details</div>
+                <div class="card-body grid">
+                    <div>
+                        <div class="label">Student Name</div>
+                        <div class="value">{{ student.name }}</div>
+                    </div>
+                    <div>
+                        <div class="label">Course</div>
+                        <div class="value">{{ student.course.name|default:"-" }}</div>
+                    </div>
+                    <div>
+                        <div class="label">Student Mobile</div>
+                        <div class="value">{{ student.mobile_no|default:"-" }}</div>
+                    </div>
+                    <div>
+                        <div class="label">Joining Date</div>
+                        <div class="value">{{ student.joining_date|date:"d M Y"|default:"-" }}</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-head">Commission Summary</div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>Total Fees</th>
+                            <td>Rs. {{ student.fees|floatformat:2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Fees Paid</th>
+                            <td>Rs. {{ paid_fees|floatformat:2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Commission Rate</th>
+                            <td>{{ commission_rate|floatformat:0 }}%</td>
+                        </tr>
+                        <tr class="highlight">
+                            <th>Referee Commission Amount</th>
+                            <td>Rs. {{ commission_amount|floatformat:2 }}</td>
+                        </tr>
+                    </table>
+                    <p class="policy">As per institute policy, referee commission is calculated as <strong>{{ commission_rate|floatformat:0 }}%</strong> of the student's paid fees.</p>
+                </div>
+            </section>
+
+            <div class="sign">
+                <div class="sign-line">Authorized Signatory</div>
+                <div class="sign-line">Referee Signature</div>
+            </div>
+        </main>
+    </div>
+
+    <div class="actions">
+        <a href="{% url 'admin:management_student_changelist' %}" class="btn secondary">Back to Students</a>
+        <button onclick="window.print()" class="btn">Print</button>
+    </div>
+</body>
+</html>

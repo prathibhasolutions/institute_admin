@@ -14,6 +14,8 @@ class Student(models.Model):
 	mobile_no = models.CharField(max_length=20)
 	guardian_name = models.CharField(max_length=255, null=True, blank=True)
 	guardian_mobile_no = models.CharField(max_length=20, null=True, blank=True)
+	referee_name = models.CharField(max_length=255, null=True, blank=True)
+	referee_details = models.TextField(null=True, blank=True)
 	course = models.ForeignKey(Course, on_delete=models.PROTECT)
 	joining_date = models.DateField(null=True, blank=True)
 	course_completion_date = models.DateField(null=True, blank=True)
